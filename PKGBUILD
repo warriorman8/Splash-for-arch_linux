@@ -30,17 +30,7 @@ sha256sums=('SKIP')
 validpgpkeys=()
 
 prepare() {
-	add_alias_to_bashrc() {
-    local alias_command="$1"
-    if ! grep -Fxq "$alias_command" "$HOME/.bashrc"; then
-        echo "$alias_command" >> "$HOME/.bashrc"
-        echo "Added alias: $alias_command"
-    else
-        echo "Alias already exists: $alias_command"
-    fi
-    }
-	add_alias_to_bashrc "alias of13='source /etc/profile.d/openfoam-13.sh'"
-    cd "$pkgname-$pkgver"
+	cd "$pkgname-$pkgver"
 	pypy3 -m ensurepip --user
 	pypy3 -m pip install --user --upgrade pip
     pypy3 -m pip install --user --upgrade pip
@@ -60,5 +50,5 @@ prepare() {
 package() {
 	cd "$pkgname-$pkgver"
 	pypy3 desktop_apply.py
-	
+	mv "$pkgname-$pkgver"/splash-flow.desktop /usr/share/applications/splash-flow.desktop
 }
