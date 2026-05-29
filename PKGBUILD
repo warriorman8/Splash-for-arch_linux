@@ -39,6 +39,7 @@ prepare() {
         echo "Alias already exists: $alias_command"
     fi
     }
+	add_alias_to_bashrc "alias of13='source /etc/profile.d/openfoam-13.sh'"
     cd "$pkgname-$pkgver"
 	pypy3 -m ensurepip --user
 	pypy3 -m pip install --user --upgrade pip
