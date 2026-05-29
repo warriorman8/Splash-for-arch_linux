@@ -30,7 +30,16 @@ sha256sums=('SKIP')
 validpgpkeys=()
 
 prepare() {
-	cd "$pkgname-$pkgver"
+	add_alias_to_bashrc() {
+    local alias_command="$1"
+    if ! grep -Fxq "$alias_command" "$HOME/.bashrc"; then
+        echo "$alias_command" >> "$HOME/.bashrc"
+        echo "Added alias: $alias_command"
+    else
+        echo "Alias already exists: $alias_command"
+    fi
+    }
+    cd "$pkgname-$pkgver"
 	pypy3 -m ensurepip --user
 	pypy3 -m pip install --user --upgrade pip
     pypy3 -m pip install --user --upgrade pip
