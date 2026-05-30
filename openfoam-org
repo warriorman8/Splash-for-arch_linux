@@ -1,0 +1,7 @@
+# run by typing ". ./openfoam-org"
+
+CFD=$PWD
+cd /etc/profile.d/
+. ./openfoam-13.sh 
+ofoam
+cd $CFD
