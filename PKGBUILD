@@ -40,9 +40,13 @@ prepare() {
 	pypy3 -m pip install --user matplotlib
 	pypy3 -m pip install --user numpy
 	pypy3 -m pip install --user numpy-stl
-#   vtk needs to be installed here
 	
 	
+}
+build() {
+        cd "$pkgname-$pkgver"
+        ./configure --prefix=/usr
+        make
 }
 
 
