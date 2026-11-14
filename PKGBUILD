@@ -44,7 +44,10 @@ prepare() {
 	
 }
 build() {
-        cd "$pkgname-$pkgver"
+        cd "$pkgname-$pkgver"/resources
+		mkdir vtk
+		cd vtk
+		mkdir build
         ./configure --prefix=/usr
         make
 }
