@@ -40,16 +40,17 @@ prepare() {
 	pypy3 -m pip install --user matplotlib
 	pypy3 -m pip install --user numpy
 	pypy3 -m pip install --user numpy-stl
+	git clone https://gitlab.kitware.com/vtk/vtk.git
+
 	
 	
 }
 build() {
-        cd "$pkgname-$pkgver"/resources
-		mkdir vtk
-		cd vtk
-		mkdir build
-        ./configure --prefix=/usr
-        make
+    cd "$pkgname-$pkgver"/resources
+	cd vtk
+    mkdir build && cd build
+    cmake ..
+    cmake --build . -j$(nproc)
 }
 
 
