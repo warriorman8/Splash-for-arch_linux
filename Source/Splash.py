@@ -1,3 +1,4 @@
+#!/usr/bin/env pypy3
 # Standard library imports 
 import os
 import re
