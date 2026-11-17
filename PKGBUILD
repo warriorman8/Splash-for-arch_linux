@@ -49,7 +49,7 @@ prepare() {
 	declare -A shells=(
 
 	)
-	
+	rm -rf openfoam
 	mkdir openfoam
 	cd openfoam
 	for key in "${!links[@]}"; do
