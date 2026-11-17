@@ -76,6 +76,7 @@ build() {
 
 package() {
 	cd "$pkgname-$pkgver"
+	chmod +x source/splash.py
 	pypy3 desktop_apply.py
 	mv "$pkgname-$pkgver"/splash-flow.desktop /usr/share/applications/splash-flow.desktop
 }
