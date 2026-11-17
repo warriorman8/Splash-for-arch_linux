@@ -14,7 +14,7 @@ url="https://github.com/warriorman8/Splash-for-arch_linux"
 license=('GPL')
 groups=()
 depends=('paraview' 'freecad' 'vim' 'grace' 'gmsh' 'shellcheck' 'cloc' 'gedit-plugins' 'xorg-server' 'xorg-apps' 'qt6-base' 'gnome' 'apptainer' 'openfoam-org' 'zenity' 'vtk' )
-makedepends=('git' 'pypy3')
+makedepends=('git' 'pypy3' 'cmake')
 checkdepends=()
 optdepends=()
 provides=()
@@ -69,6 +69,7 @@ build() {
     mkdir build && cd build
     cmake ..
     cmake --build . -j$(nproc)
+	cd ..
 }
 
 
