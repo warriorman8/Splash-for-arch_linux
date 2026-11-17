@@ -41,7 +41,25 @@ prepare() {
 	pypy3 -m pip install --user numpy
 	pypy3 -m pip install --user numpy-stl
 	git clone https://gitlab.kitware.com/vtk/vtk.git
+	# creating the git link dictionary for openfoam versions
+	declare -A links=(
+		
+	)
+    # creating shell alias dictionary to be put in bashrc
+	declare -A shells=(
 
+	)
+	
+	mkdir openfoam
+	cd openfoam
+	for key in "${!links[@]}"; do
+		echo "alias $key='${shells[$key]}'" >> ~/.bashrc
+		mkdir $key
+		cd $key
+		git clone ${links[$key]}
+		cd ..
+	done
+	cd ..
 	
 	
 }
