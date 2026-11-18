@@ -62,9 +62,10 @@ prepare() {
 	mkdir openfoam
 	cd openfoam
 	for key in "${!links[@]}"; do
-		echo "alias $key='source $PWD/${shells[$key]}'" >> ~/.bashrc
 		mkdir $key
 		cd $key
+		echo "alias $key='source $PWD/${shells[$key]}'" >> ~/.bashrc
+
 		git clone ${links[$key]}
 		cd ..
 	done
