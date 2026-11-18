@@ -50,8 +50,8 @@ prepare() {
 		['of12'] = 'https://github.com/OpenFOAM/OpenFOAM-12.git'
 		
 	)
-    # creating foundation shell alias dictionary to be put in bashrc
-	declare -A fshells=(
+    # creating shell alias dictionary to be put in bashrc
+	declare -A shells=(
 		['of8']='openfoam8/etc/bashrc'
 		['of9']='openfoam9/etc/bashrc'
 		['of10']='openfoam10/etc/bashrc'
@@ -71,20 +71,21 @@ prepare() {
 	done
 	# creating the git link dictionary for ESI openfoam versions	
 	declare -A ESIlinks=(
-
+    	['of2202'] = 'https://sourceforge.net/projects/openfoam/files/v2206/OpenFOAM-v2206.tgz'
+		['of2212'] = 'https://sourceforge.net/projects/openfoam/files/v2212/OpenFOAM-v2212.tgz'
+		['of2306'] = 'https://sourceforge.net/projects/openfoam/files/v2306/OpenFOAM-v2306.tgz'
+		['of2312'] = 'https://sourceforge.net/projects/openfoam/files/v2312/OpenFOAM-v2312.tgz'
+		['of2406'] = 'https://sourceforge.net/projects/openfoam/files/v2406/OpenFOAM-v2406.tgz'
 		
 	)
     # creating ESI shell alias dictionary to be put in bashrc
-	declare -A ESIshells=(
-
-	)
 	rm -rf openfoam
 	mkdir openfoam
 	cd openfoam
 	for key in "${!ESIlinks[@]}"; do
 		mkdir $key
 		cd $key
-		echo "alias $key='source $PWD/${ESIshells[$key]}'" >> ~/.bashrc
+		echo "alias $key='source $PWD/${shells[$key]}'" >> ~/.bashrc
 
 		wget ${ESIlinks[$key]}
 		cd ..
