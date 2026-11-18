@@ -41,8 +41,8 @@ prepare() {
 	pypy3 -m pip install --user numpy
 	pypy3 -m pip install --user numpy-stl
 	git clone https://gitlab.kitware.com/vtk/vtk.git
-	# creating the git link dictionary for openfoam versions
-	declare -A links=(
+	# creating the git link dictionary for foundation openfoam versions
+	declare -A flinks=(
 		['of8'] = 'https://github.com/OpenFOAM/OpenFOAM-8.git'
 		['of9'] = 'https://github.com/OpenFOAM/OpenFOAM-9.git'
 		['of10'] = 'https://github.com/OpenFOAM/OpenFOAM-10.git'
@@ -50,8 +50,8 @@ prepare() {
 		['of12'] = 'https://github.com/OpenFOAM/OpenFOAM-12.git'
 		
 	)
-    # creating shell alias dictionary to be put in bashrc
-	declare -A shells=(
+    # creating foundation shell alias dictionary to be put in bashrc
+	declare -A fshells=(
 		['of8']='openfoam8/etc/bashrc'
 		['of9']='openfoam9/etc/bashrc'
 		['of10']='openfoam10/etc/bashrc'
@@ -61,14 +61,34 @@ prepare() {
 	rm -rf openfoam
 	mkdir openfoam
 	cd openfoam
-	for key in "${!links[@]}"; do
+	for key in "${!flinks[@]}"; do
 		mkdir $key
 		cd $key
-		echo "alias $key='source $PWD/${shells[$key]}'" >> ~/.bashrc
+		echo "alias $key='source $PWD/${fshells[$key]}'" >> ~/.bashrc
 
-		git clone ${links[$key]}
+		git clone ${flinks[$key]}
 		cd ..
 	done
+	# creating the git link dictionary for ESI openfoam versions	
+	declare -A ESIlinks=(
+
+		
+	)
+    # creating ESI shell alias dictionary to be put in bashrc
+	declare -A ESIshells=(
+
+	)
+	rm -rf openfoam
+	mkdir openfoam
+	cd openfoam
+	for key in "${!ESIlinks[@]}"; do
+		mkdir $key
+		cd $key
+		echo "alias $key='source $PWD/${ESIshells[$key]}'" >> ~/.bashrc
+
+		wget ${ESIlinks[$key]}
+		cd ..
+	done	
 	cd ..
 	
 	
