@@ -43,17 +43,26 @@ prepare() {
 	git clone https://gitlab.kitware.com/vtk/vtk.git
 	# creating the git link dictionary for openfoam versions
 	declare -A links=(
+		['of8'] = 'https://github.com/OpenFOAM/OpenFOAM-8.git'
+		['of9'] = 'https://github.com/OpenFOAM/OpenFOAM-9.git'
+		['of10'] = 'https://github.com/OpenFOAM/OpenFOAM-10.git'
+		['of11'] = 'https://github.com/OpenFOAM/OpenFOAM-11.git'
+		['of12'] = 'https://github.com/OpenFOAM/OpenFOAM-12.git'
 		
 	)
     # creating shell alias dictionary to be put in bashrc
 	declare -A shells=(
-
+		['of8']='openfoam8/etc/bashrc'
+		['of9']='openfoam9/etc/bashrc'
+		['of10']='openfoam10/etc/bashrc'
+		['of11']='openfoam11/etc/bashrc'
+		['of12']='openfoam12/etc/bashrc'
 	)
 	rm -rf openfoam
 	mkdir openfoam
 	cd openfoam
 	for key in "${!links[@]}"; do
-		echo "alias $key='${shells[$key]}'" >> ~/.bashrc
+		echo "alias $key='source $PWD/${shells[$key]}'" >> ~/.bashrc
 		mkdir $key
 		cd $key
 		git clone ${links[$key]}
