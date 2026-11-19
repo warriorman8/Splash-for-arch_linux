@@ -13,10 +13,10 @@ arch=(x86_64)
 url="https://github.com/warriorman8/Splash-for-arch_linux"
 license=('GPL')
 groups=()
-depends=('paraview' 'freecad' 'vim' 'grace' 'gmsh' 'shellcheck' 'cloc' 'gedit-plugins' 'xorg-server' 'xorg-apps' 'qt6-base' 'gnome' 'apptainer' 'openfoam-org' 'zenity' 'vtk' )
+depends=( 'vim' 'grace' 'gmsh' 'shellcheck' 'cloc' 'gedit-plugins' 'xorg-server' 'xorg-apps' 'qt6-base' 'gnome'  )
 makedepends=('git' 'pypy3' 'cmake')
 checkdepends=()
-optdepends=()
+optdepends=('paraview' 'freecad')
 provides=()
 conflicts=()
 replaces=()
@@ -84,15 +84,12 @@ prepare() {
 		
 	)
     # creating ESI shell alias dictionary to be put in bashrc
-	rm -rf openfoam
-	mkdir openfoam
-	cd openfoam
 	for key in "${!ESIlinks[@]}"; do
 		mkdir $key
 		cd $key
 		echo "alias $key='source $PWD/${shells[$key]}'" >> ~/.bashrc
-
 		wget ${ESIlinks[$key]}
+		tar -zxvf *.tgz
 		cd ..
 	done	
 	cd ..
