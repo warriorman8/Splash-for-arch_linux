@@ -57,6 +57,11 @@ prepare() {
 		['of10']='openfoam10/etc/bashrc'
 		['of11']='openfoam11/etc/bashrc'
 		['of12']='openfoam12/etc/bashrc'
+		['of2206']='OpenFOAM-v2206/etc/bashrc'
+		['of2212']='OpenFOAM-v2212/etc/bashrc'
+		['of2306']='OpenFOAM-v2306/etc/bashrc'
+		['of2312']='OpenFOAM-v2312/etc/bashrc'
+		['of2406']='OpenFOAM-v2406/etc/bashrc'
 	)
 	rm -rf openfoam
 	mkdir openfoam
@@ -71,7 +76,7 @@ prepare() {
 	done
 	# creating the git link dictionary for ESI openfoam versions	
 	declare -A ESIlinks=(
-    	['of2202'] = 'https://sourceforge.net/projects/openfoam/files/v2206/OpenFOAM-v2206.tgz'
+    	['of2206'] = 'https://sourceforge.net/projects/openfoam/files/v2206/OpenFOAM-v2206.tgz'
 		['of2212'] = 'https://sourceforge.net/projects/openfoam/files/v2212/OpenFOAM-v2212.tgz'
 		['of2306'] = 'https://sourceforge.net/projects/openfoam/files/v2306/OpenFOAM-v2306.tgz'
 		['of2312'] = 'https://sourceforge.net/projects/openfoam/files/v2312/OpenFOAM-v2312.tgz'
